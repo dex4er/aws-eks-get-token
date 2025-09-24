@@ -353,7 +353,9 @@ func loadAWSConfig(ctx context.Context, params Params) (aws.Config, error) {
 	// Set STS regional endpoint if specified
 	// In AWS SDK v2, we set this via environment variable internally
 	if params.STSRegionalEndpoint != "" {
-		os.Setenv("AWS_STS_REGIONAL_ENDPOINTS", params.STSRegionalEndpoint)
+		if err := os.Setenv("AWS_STS_REGIONAL_ENDPOINTS", params.STSRegionalEndpoint); err != nil {
+			return aws.Config{}, fmt.Errorf("failed to set STS regional endpoint: %w", err)
+		}
 	}
 
 	// Load base configuration
