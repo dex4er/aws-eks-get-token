@@ -20,6 +20,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var version = "dev"
+
 const (
 	defaultTTL     = 900 // 15 minutes in seconds
 	presignExpires = 60  // 1 minute in seconds
@@ -55,6 +57,7 @@ type Params struct {
 
 func main() {
 	params := Params{}
+	var showVersion bool
 
 	var rootCmd = &cobra.Command{
 		Use:   "aws-eks-get-token",
@@ -73,6 +76,16 @@ This tool caches tokens to improve performance and reduce API calls. It also sup
   CLIENT_CERT_FILE=client.crt CLIENT_KEY_FILE=client.key aws-eks-get-token --cluster-name my-cluster --region us-west-2
   AWS_STS_REGIONAL_ENDPOINT=legacy aws-eks-get-token --cluster-name my-cluster --region us-west-2`,
 		RunE: func(cmd *cobra.Command, args []string) error {
+			// Handle version flag
+			if showVersion {
+				if version != "dev" {
+					fmt.Println("v" + version)
+				} else {
+					fmt.Println("dev")
+				}
+				return nil
+			}
+
 			// Check for client cert files from environment variables if not provided via flags
 			if params.ClientCertFile == "" {
 				if envCertFile := os.Getenv("CLIENT_CERT_FILE"); envCertFile != "" {
@@ -109,9 +122,15 @@ This tool caches tokens to improve performance and reduce API calls. It also sup
 	rootCmd.Flags().StringVar(&params.Output, "output", "", "Output format (json or omit for default)")
 	rootCmd.Flags().StringVar(&params.STSRegionalEndpoint, "sts-regional-endpoints", "", "Use regional STS endpoints (regional or legacy, optional if AWS_STS_REGIONAL_ENDPOINT is set)")
 	rootCmd.Flags().StringVar(&params.CacheDir, "cache-dir", "", "Override default cache directory (~/.kube/cache/tokens)")
+	rootCmd.Flags().BoolVarP(&showVersion, "version", "v", false, "Show version information")
 
 	// Custom validation for cluster name or ID
 	rootCmd.PreRunE = func(cmd *cobra.Command, args []string) error {
+		// Skip validation if version flag is set
+		if showVersion {
+			return nil
+		}
+
 		if params.ClusterName == "" && params.ClusterId == "" {
 			return fmt.Errorf("either --cluster-name or --cluster-id must be specified")
 		}

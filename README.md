@@ -1,8 +1,8 @@
 # aws-eks-get-token
 
-[![Go Version](https://img.shields.io/github/go-mod/go-version/dex4er/aws-eks-get-token)](https://golang.org/)
+[![GitHub](https://img.shields.io/github/v/release/dex4er/aws-eks-get-token?display_name=tag&sort=semver)](https://github.com/dex4er/aws-eks-get-token)
+[![Test](https://github.com/dex4er/aws-eks-get-token/actions/workflows/test.yaml/badge.svg)](https://github.com/dex4er/aws-eks-get-token/actions/workflows/test.yaml)
 [![License](https://img.shields.io/github/license/dex4er/aws-eks-get-token)](LICENSE)
-[![Release](https://img.shields.io/github/v/release/dex4er/aws-eks-get-token)](https://github.com/dex4er/aws-eks-get-token/releases)
 
 A fast, native Go replacement for `aws eks get-token` with advanced caching and configuration options.
 
