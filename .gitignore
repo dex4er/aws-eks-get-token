@@ -1,0 +1,12 @@
+?.*
+*~
+*.backup
+*.bak
+*.exe
+*.log
+dist/
+tmp/
+/aws-eks-get-token
+.DS_Store
+.idea
+.vscode
