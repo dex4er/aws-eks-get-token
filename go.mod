@@ -8,7 +8,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/credentials v1.18.14
 	github.com/aws/aws-sdk-go-v2/service/eks v1.74.1
 	github.com/aws/aws-sdk-go-v2/service/sts v1.38.5
-	github.com/aws/smithy-go v1.23.0
+	github.com/aws/smithy-go v1.25.1
 	github.com/spf13/cobra v1.10.1
 )
 
