@@ -43,7 +43,7 @@ jobs:
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v7
         with:
-          version: 2.12.2 # datasource=github-releases depName=goreleaser/goreleaser
+          version: 2.15.4 # datasource=github-releases depName=goreleaser/goreleaser
           args: build --clean --snapshot --single-target --output aws-eks-get-token
 
       - name: Test the output
