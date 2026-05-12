@@ -89,7 +89,7 @@ aws-eks-get-token --cluster-name my-cluster --region us-west-2 \
 ### Command Line Flags
 
 | Flag | Description | Default |
-|------|-------------|---------|
+| --- | --- | --- |
 | `--cluster-name` | EKS cluster name | Required* |
 | `--cluster-id` | EKS cluster ID (ARN or ID) | Required* |
 | `--region` | AWS region | From env vars |
@@ -110,7 +110,7 @@ aws-eks-get-token --cluster-name my-cluster --region us-west-2 \
 The tool supports all standard AWS environment variables:
 
 | Environment Variable | Description | Flag Override |
-|---------------------|-------------|---------------|
+| --- | --- | --- |
 | `AWS_REGION` | AWS region | `--region` |
 | `AWS_DEFAULT_REGION` | AWS region (fallback) | `--region` |
 | `AWS_PROFILE` | AWS profile | `--profile` |
@@ -246,7 +246,7 @@ aws-eks-get-token --cluster-name my-cluster --region us-west-2
 ## Comparison with AWS CLI
 
 | Feature | aws-eks-get-token | aws eks get-token |
-|---------|-------------------|-------------------|
+| --- | --- | --- |
 | Dependencies | None (single binary) | AWS CLI + Python |
 | Performance | ~50ms | ~500ms+ |
 | Caching | Built-in with TTL | None |
